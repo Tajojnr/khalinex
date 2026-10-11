@@ -1,26 +1,89 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Base Resets & OS Dark Mode Override */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevents OS Dark Mode from ruining form inputs on iOS/Android */
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+  overflow-x: hidden;
+}
+
+/* Custom Sleek Scrollbar for Cart & Drawers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CCCCCC;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00AEEF;
+}
+
+/* Brand Text Selection Highlight */
+::selection {
+  background-color: #CCEFFB;
+  color: #0A0A0A;
+}
+
+/* Custom Component Classes */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-500 text-white font-semibold text-sm tracking-wide shadow-brand hover:bg-brand-400 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-dark-950 font-semibold text-sm border border-dark-100 shadow-soft hover:bg-surface-secondary hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-dark-200 focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-dark-100 shadow-soft transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply bg-white rounded-2xl border border-dark-100 shadow-soft hover:shadow-medium hover:-translate-y-1 transition-all duration-300 cursor-pointer;
+  }
+
+  .section {
+    @apply px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .section-narrow,
+  .container-main {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-brand-400 to-brand-500;
+  }
+
+  .bg-hero-gradient {
+    @apply bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950;
+  }
+
+  .bg-dark-mesh {
+    background-image: radial-gradient(at 20% 80%, rgba(0, 174, 239, 0.1) 0%, transparent 50%), radial-gradient(at 80% 20%, rgba(153, 153, 153, 0.1) 0%, transparent 50%);
+  }
 }
